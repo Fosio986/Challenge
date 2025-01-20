@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel (compilateur pour le JSX) -->
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
+  <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+ //Créez deux composants et affichez pour chaque étudiant son nom et sa moyenne dans une liste ul/li.
+ //Le composant App déclarera la liste et rendra des composants Student
+
+
+ const Student = ({student}) => {
+
+  const moy = Math.floor((student.notes.reduce((acc, curr) => acc + curr, 0) / student.notes.length) * 100) / 100
+
+  return (
+   <div>
+    <div> Nom : {student.name} </div>
+    <div>Moyenne : {moy} / 20</div>
+   </div>
+  )
+ }
+
+ const App = () => {
+
+  const students = [
+   {
+    notes: [12, 11, 10],
+    name: "Alan"
+   },
+   {
+    notes: [18, 10, 19],
+    name: "Alice"
+   },
+   {
+    notes: [10, 9, 11],
+    name: "Bernard"
+   },
+   {
+    notes: [11, 17, 19],
+    name: "Sophie"
+   },
+  ];
+
+  return (
+   <ul>
+    {
+     students.map((student, i) => {
+      return <Student student={student} key={i} />
+     })
+    }
+   </ul>
+  )
+ }
+
+
+ ReactDOM.createRoot(
+  document.querySelector("#root")
+ )
+  .render(
+   <App/>
+  )
+</script>
+</body>
+</html>

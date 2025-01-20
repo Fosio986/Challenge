@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diaporama</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    // Composant Diapo
+    const Diapo = ({ images, interval }) => {
+      const [currentIndex, setCurrentIndex] = React.useState(0); // Stocke l'index de l'image affichée
+
+      React.useEffect(() => {
+        const timer = setInterval(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length); // Passe à l'image suivante ou revient à la première
+        }, interval);
+
+        // Nettoie l'intervalle quand le composant est démonté
+        return () => clearInterval(timer);
+      }, [images, interval]);
+
+      return (
+        <div style={{ textAlign: "center", margin: "20px" }}>
+          <img
+            src={images[currentIndex]}
+            alt={`Image ${currentIndex + 1}`}
+            style={{ maxWidth: "80%", maxHeight: "500px", borderRadius: "10px" }}
+          />
+          <div style={{ marginTop: "10px" }}>
+            Image {currentIndex + 1} sur {images.length}
+          </div>
+        </div>
+      );
+    };
+
+    // Liste des images
+    const imageList = [
+      "./img/image1.jpg",  // Chemin vers image1.jpg
+      "./img/image2.jpg",  // Chemin vers image2.jpg
+      "./img/image3.jpg",  // Chemin vers image3.jpg
+      "./img/image4.jpg",  // Chemin vers image4.jpg
+    ];
+
+    // Rendu
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Diapo images={imageList} interval={3000} />); // Diaporama avec changement toutes les 3 secondes
+  </script>
+</body>
+</html>

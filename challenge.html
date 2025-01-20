@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Challenge Counter</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const Counter = () => {
+        const [count, setCount] = React.useState(0);
+        const [error, setError] = React.useState("");
+
+        const increment = () => {
+            setCount(count + 1);
+            setError(""); // nettoyage du message d'erreur 
+        };
+
+        const decrement = () => {
+            if (count > 0) {
+                setCount(count - 1);
+                setError(""); 
+            }
+            else {
+                setError("Vous ne pouvez pas descendre en dessous de 0."); // message d'erreur
+            }
+        };
+
+        return (
+            <div style={{ textAlign: "center", marginTop: "50px" }}>
+                <h1>Compteur: {count}</h1>
+
+                <button onClick={decrement} style={{marginRight: "10px" }}>
+                    -1
+                </button>
+
+                <button onClick={increment} style={{ marginLeft: "10px" }}>
+                    +1
+                </button>
+
+                {error && (
+                    <div style={{ color: "red", marginTop: "10px" }}>
+                    {error}
+                    </div>
+                )}
+            </div>
+        );
+    };
+
+    ReactDOM.createRoot(
+        document.querySelector("#root")
+    ).render(
+        <Counter />
+    );
+
+
+  </script>
+</body>
+</html>
