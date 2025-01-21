@@ -1,13 +1,18 @@
 import './App.css'
 import React from "react";
-import Counter from "./Counter";
+import CyclicCounter from "./CyclicCounter";
+import BinaryCounter from "./BinaryCounter";
 
 function App() {
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
       <h1>Multi-Counter</h1>
-      <Counter increment={1} />
-      <Counter increment={2} />
+
+      {/* Compteur cyclique avec une valeur maximale de 5 */}
+      <CyclicCounter increment={1} maxValue={5} />
+
+      {/* Compteur binaire avec 4 bits */}
+      <BinaryCounter increment={1} bitLength={4} />
     </div>
   );
 }

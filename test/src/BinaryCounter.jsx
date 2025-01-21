@@ -1,6 +1,7 @@
+// src/BinaryCounter.jsx
 import React, { useState, useEffect } from "react";
 
-function Counter({ increment }) {
+function BinaryCounter({ increment, bitLength }) {
     const [count, setCount] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
@@ -14,25 +15,21 @@ function Counter({ increment }) {
         setIsRunning(false);
     };
 
-    // Effet pour gérer l'incrémentation automatique
+    // Effet pour gérer l'incrémentation binaire
     useEffect(() => {
         let interval = null;
 
-        if (isRunning && count < 20) {
+        if (isRunning) {
             interval = setInterval(() => {
-                setCount((prev) => prev + increment);
-            }, 1000); // Incrémente toutes les secondes
+                setCount((prev) => (prev + increment) % (2 ** bitLength)); // Incrémente et revient à zéro après avoir atteint la valeur max en binaire
+            }, 1000); 
         }
 
-        // Nettoyage
-        if (count >= 20) {
-            stopCounter();
-        }
-
+        // Nettoyage de l'intervalle
         return () => clearInterval(interval);
-    }, [isRunning, count, increment]);
+    }, [isRunning, increment, bitLength]);
 
-    // Réinitialisation 
+    // Réinitialisation du compteur
     const resetCounter = () => {
         setCount(0);
         setIsRunning(false);
@@ -40,17 +37,20 @@ function Counter({ increment }) {
 
     return (
         <div style={{ margin: "20px" }}>
-            <h2>Counter ({increment})</h2>
-            <p>Value: {count}</p>
-            <button onClick={startCounter} disabled={isRunning || count >= 20}>
+            <h2>Binary Counter ({bitLength}-bit)</h2>
+            <p>Value: {count.toString(2).padStart(bitLength, '0')}</p>
+
+            <button onClick={startCounter} disabled={isRunning}>
                 Start
             </button>
+
             <button onClick={stopCounter} disabled={!isRunning}>
                 Stop
             </button>
+            
             <button onClick={resetCounter}>Reset</button>
         </div>
     );
 }
 
-export default Counter;
+export default BinaryCounter;
