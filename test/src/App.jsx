@@ -1,13 +1,11 @@
-import './App.css'
 import React from "react";
-import Counter from "./Counter";
+import Calculator from "./components/Calculator";
+import "./App.css";
 
 function App() {
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>Multi-Counter</h1>
-      <Counter increment={1} />
-      <Counter increment={2} />
+    <div className="App">
+      <Calculator />
     </div>
   );
 }
