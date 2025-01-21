@@ -1,23 +1,15 @@
 import './App.css'
-import Counter from "./Counter.jsx";
-import Numbers from "./Numbers.jsx";
+import React from "react";
+import Counter from "./Counter";
 
 function App() {
- 
- const handleClick = (text) => {
-  console.log(text)
- }
- 
- const stopLink = (e) => {
-  e.preventDefault()
- }
- 
- return (<>
-   <button onClick={() => handleClick("coucou")}>Click me !</button>
-   <a onClick={stopLink} href={"https://google.fr"}>Lien</a>
-   <Numbers/>
-   <Counter/>
-  </>)
+  return (
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <h1>Multi-Counter</h1>
+      <Counter increment={1} />
+      <Counter increment={2} />
+    </div>
+  );
 }
 
-export default App
+export default App;
