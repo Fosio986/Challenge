@@ -1,32 +1,31 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { TextContext } from "../context/TextContext";
 import TextInput from "./TextInput";
 import TextStyleSelector from "./TextStyleSelector";
 import TextSizeSelector from "./TextSizeSelector";
 
 const TextForm = () => {
-  const { state, dispatch } = useContext(TextContext);
-  const { text, color, size } = state;
-    
+  const { dispatch } = useContext(TextContext);
+  const [text, setText] = useState("");
+  const [color, setColor] = useState("palevioletred");
+  const [size, setSize] = useState("15");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text && text.trim()) {
+    if (text.trim()) {
       dispatch({
         type: "ADD_TEXT",
         payload: { text, color, size },
       });
-      dispatch({ type: "CLEAR_TEXT" }); // Action pour vider le champ de texte après soumission
-    }
-    else{
-        console.log("le texte ne peut pas être vide");
+      setText(""); // Réinitialise le champ texte
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextInput />
-      <TextStyleSelector />
-      <TextSizeSelector />
+      <TextInput text={text} setText={setText} />
+      <TextStyleSelector color={color} setColor={setColor} />
+      <TextSizeSelector size={size} setSize={setSize} />
       <button type="submit">Valider</button>
     </form>
   );

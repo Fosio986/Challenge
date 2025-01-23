@@ -1,17 +1,10 @@
-import React, { useContext } from "react";
-import { TextContext } from "../context/TextContext";
+import React from "react";
 
-const TextSizeSelector = () => {
-  const { state, dispatch } = useContext(TextContext);
-
-  const handleChange = (e) => {
-    dispatch({ type: "SET_SIZE", payload: e.target.value });
-  };
-
+const TextSizeSelector = ({ size, setSize }) => {
   return (
     <div>
       <label>Taille du texte :</label>
-      <select value={state.size} onChange={handleChange}>
+      <select value={size} onChange={(e) => setSize(e.target.value)}>
         {[15, 16, 17, 18, 19, 20].map((s) => (
           <option key={s} value={s}>
             {s}px

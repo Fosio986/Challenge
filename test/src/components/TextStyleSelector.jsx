@@ -1,17 +1,10 @@
-import React, { useContext } from "react";
-import { TextContext } from "../context/TextContext";
+import React from "react";
 
-const TextStyleSelector = () => {
-  const { state, dispatch } = useContext(TextContext);
-
-  const handleChange = (e) => {
-    dispatch({ type: "SET_COLOR", payload: e.target.value });
-  };
-
+const TextStyleSelector = ({ color, setColor }) => {
   return (
     <div>
       <label>Style de texte :</label>
-      <select value={state.color} onChange={handleChange}>
+      <select value={color} onChange={(e) => setColor(e.target.value)}>
         <option value="palevioletred">palevioletred</option>
         <option value="tomato">tomato</option>
       </select>
