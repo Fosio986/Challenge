@@ -1,17 +1,18 @@
 import React from "react";
-import PostProvider from "./components/PostContext";
-import PostForm from "./components/PostForm";
-import PostList from "./components/PostList";
+import TextProvider from "./context/TextContext";
+import TextForm from "./components/TextForm";
+import TextList from "./components/TextList";
 
 const App = () => {
   return (
-    <PostProvider>
-      <div>
-        <h1>Gestion des Posts</h1>
-        <PostForm />
-        <PostList />
+    <TextProvider>
+      <div style={{ padding: "20px" }}>
+        <h1>Gestion des textes</h1>
+        <TextForm />
+        <hr />
+        <TextList />
       </div>
-    </PostProvider>
+    </TextProvider>
   );
 };
 
