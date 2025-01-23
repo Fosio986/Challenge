@@ -14,11 +14,6 @@ const textReducer = (state, action) => {
         ...state,
         texts: state.texts.filter((_, index) => index !== action.payload), // Suppression par index
       };
-      case "CLEAR_TEXT": // Ajout de l'action pour vider le texte
-      return {
-        ...state,
-        text: "", // Réinitialise le texte
-      };
     default:
       return state;
   }
