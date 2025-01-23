@@ -1,21 +1,17 @@
-import React, { useReducer } from "react";
-import Display from "./components/Display";
-import NumberButtons from "./components/NumberButtons";
-import OperatorButtons from "./components/OperatorButtons";
-import { calculatorReducer, initialState } from "./reducer/CalculatorReducer";
-import "./App.css";
+import React from "react";
+import PostProvider from "./components/PostContext";
+import PostForm from "./components/PostForm";
+import PostList from "./components/PostList";
 
 const App = () => {
-  const [state, dispatch] = useReducer(calculatorReducer, initialState);
-
   return (
-    <div className="calculator">
-      <Display value={state.displayValue} />
-      <div className="buttons">
-        <NumberButtons dispatch={dispatch} />
-        <OperatorButtons dispatch={dispatch} />
+    <PostProvider>
+      <div>
+        <h1>Gestion des Posts</h1>
+        <PostForm />
+        <PostList />
       </div>
-    </div>
+    </PostProvider>
   );
 };
 
