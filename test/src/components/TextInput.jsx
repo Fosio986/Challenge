@@ -4,9 +4,9 @@ import { TextContext } from "../context/TextContext";
 const TextInput = () => {
   const { state, dispatch } = useContext(TextContext);
 
-  // Fonction de gestion de changement de texte
+  // Gestion du changement de texte
   const handleChange = (e) => {
-    dispatch({ type: "SET_TEXT", payload: e.target.value });
+    dispatch({ type: "UPDATE_TEXT", payload: e.target.value }); // Action pour mettre à jour le texte
   };
 
   return (
@@ -14,8 +14,8 @@ const TextInput = () => {
       <label>Saisir un texte :</label>
       <input
         type="text"
-        value={state.text}  
-        onChange={handleChange}  
+        value={state.text}
+        onChange={handleChange}
         placeholder="Entrez votre texte"
       />
     </div>

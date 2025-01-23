@@ -4,8 +4,9 @@ import { TextContext } from "../context/TextContext";
 const TextStyleSelector = () => {
   const { state, dispatch } = useContext(TextContext);
 
+  // Gestion du changement de couleur
   const handleChange = (e) => {
-    dispatch({ type: "SET_COLOR", payload: e.target.value });
+    dispatch({ type: "ADD_COLOR", payload: e.target.value }); // Action pour mettre à jour la couleur
   };
 
   return (

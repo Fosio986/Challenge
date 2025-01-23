@@ -4,8 +4,9 @@ import { TextContext } from "../context/TextContext";
 const TextSizeSelector = () => {
   const { state, dispatch } = useContext(TextContext);
 
+  // Gestion du changement de taille
   const handleChange = (e) => {
-    dispatch({ type: "SET_SIZE", payload: e.target.value });
+    dispatch({ type: "ADD_SIZE", payload: e.target.value }); // Action pour mettre à jour la taille
   };
 
   return (

@@ -7,18 +7,17 @@ import TextSizeSelector from "./TextSizeSelector";
 const TextForm = () => {
   const { state, dispatch } = useContext(TextContext);
   const { text, color, size } = state;
-    
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text && text.trim()) {
+    if (text.trim()) {
       dispatch({
         type: "ADD_TEXT",
-        payload: { text, color, size },
+        payload: { text, color, size }, // Ajoute le texte avec ses styles
       });
-      dispatch({ type: "CLEAR_TEXT" }); // Action pour vider le champ de texte après soumission
-    }
-    else{
-        console.log("le texte ne peut pas être vide");
+      dispatch({ type: "CLEAR_TEXT" }); // Réinitialise le texte
+    } else {
+      console.log("Le texte ne peut pas être vide.");
     }
   };
 

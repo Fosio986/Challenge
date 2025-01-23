@@ -4,7 +4,6 @@ import { TextContext } from "../context/TextContext";
 const TextList = () => {
   const { state, dispatch } = useContext(TextContext);
   const { texts } = state;
-  console.log(texts);
   return (
     <div>
       {texts.map((item, index) => (
