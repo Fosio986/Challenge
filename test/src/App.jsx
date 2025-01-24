@@ -1,19 +1,23 @@
 import React from "react";
-import TextProvider from "./context/TextContext";
-import TextForm from "./components/TextForm";
-import TextList from "./components/TextList";
+import { ExpenseProvider } from "./context/ExpenseContext";
+import ExpenseForm from "./components/ExpenseForm";
+import ExpenseList from "./components/ExpenseList";
+import TotalExpense from "./components/ExpenseTotal";
+import CategoryTotal from "./components/CategoryTotal";
+import "./App.css"
 
-const App = () => {
+function App() {
   return (
-    <TextProvider>
-      <div style={{ padding: "20px" }}>
-        <h1>Gestion des textes</h1>
-        <TextForm />
-        <hr />
-        <TextList />
+    <ExpenseProvider>
+      <div>
+        <h1>Gestion des Dépenses Personnelles</h1>
+        <ExpenseForm />
+        <TotalExpense />
+        <CategoryTotal /> 
+        <ExpenseList />
       </div>
-    </TextProvider>
+    </ExpenseProvider>
   );
-};
+}
 
 export default App;
